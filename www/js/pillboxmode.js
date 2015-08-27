@@ -20,7 +20,7 @@ angular.module('starter.pillBoxMode', [])
         var Y = result.y;
         var Z = result.z;
         var timeStamp = result.timestamp;
-        
+
         $scope.accel = {
           X: X,
           Y: Y,
@@ -66,6 +66,32 @@ angular.module('starter.pillBoxMode', [])
       }
     });
   }
+
+  //Execute code every 5 second
+  setInterval(function() {
+    console.log("code runnned");
+    var Question = Parse.Object.extend("Pillbox");
+    var query = new Parse.Query(Question);
+    query.equalTo("Pid",$scope.code);
+    query.first({
+      success: function(object) {
+        // Successfully retrieved the object.
+        if(object !== undefined){
+          console.log("Retrieved object from parse " + object.get('Pid'));
+        }
+
+        if(object.get('User') !== undefined){
+          console.log("Retrieved object from parse " + object.get('User'));
+        } else {
+          console.log("Not paired with any user");
+        }
+    },
+    error: function(error) {
+      console.log("Error: " + error.code + " " + error.message);
+    }
+    });
+  }, 5000);
+
 
   $scope.clear = function() {
     window.localStorage.clear();
