@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
   });
 
   Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
-  var currentUser = Parse.User.current();
+  // var currentUser = Parse.User.current();
 
   //User logged in or not sample
   // $rootScope.user = null;
@@ -83,7 +83,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
           controller: 'userCtrl'
         }
       }
-    })
+  })
   .state('tab.signup', {
       url: '/signup',
       views: {
@@ -92,32 +92,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
           controller: 'userCtrl'
         }
       }
-    })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-
+  })
   .state('tab.setting', {
     url: '/setting',
     views: {
       'tab-setting': {
         templateUrl: 'templates/tab-setting.html',
         controller: 'SettingCtrl'
-
       }
     }
   })
@@ -125,7 +106,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     url: '/setting/pairing',
     views: {
       'tab-setting': {
-        templateUrl: 'templates/tab-setting-pairing.html',
+        templateUrl: 'templates/tab-setting-pairing.html'
         // controller: 'SettingCtrl'
       }
     }
@@ -136,15 +117,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
 
 });
 
-.run(function ($state, $rootScope) {
-    Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
-    var currentUser = Parse.User.current();
-    $rootScope.user = null;
-    $rootScope.isLoggedIn = false;
+// .run(function ($state, $rootScope) {
+//     Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
+//     var currentUser = Parse.User.current();
+//     $rootScope.user = null;
+//     $rootScope.isLoggedIn = false;
 
-    if (currentUser) {
-        $rootScope.user = currentUser;
-        $rootScope.isLoggedIn = true;
-        $state.go('app.home');
-    }
-})
+//     if (currentUser) {
+//         $rootScope.user = currentUser;
+//         $rootScope.isLoggedIn = true;
+//         $state.go('app.home');
+//     }
+// });
