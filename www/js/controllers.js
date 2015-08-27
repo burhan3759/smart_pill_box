@@ -39,8 +39,8 @@ angular.module('starter.controllers', [])
 
   $scope.logout = function(){
     Parse.User.logOut();
-    $state.go('tab.login');
-  }
+    $state.go('login');
+  };
   
 })
 

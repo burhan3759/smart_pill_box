@@ -6,10 +6,11 @@
       <i class="icon ion-code-working"></i>
       <b>Pairing Code</b>
     </div>
-    <div class="item large" style="text-align: center;">
-      {{code}}
-    </div>
+    <label class="item item-input">
+        <input type="text" placeholder="CODE" ng-model="data.pillId">
+    </label>
   </div>
+  <button  ng-click="pair()">Pair</button>
 
   Debug:
   <a class="button" href="#pillboxmode">Check</a>
