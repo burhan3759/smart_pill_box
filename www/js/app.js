@@ -52,10 +52,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
+  })
+
+  .state('start', {
+    url: '/start',
+    templateUrl: 'templates/start.html',
   })
 
   // Each tab has its own nav history stack:
@@ -105,21 +110,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
           templateUrl: 'templates/chat-detail.html',
           controller: 'ChatDetailCtrl'
         }
-      }
-    })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.setting', {
+    url: '/setting',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-setting': {
+        templateUrl: 'templates/tab-setting.html',
+        controller: 'SettingCtrl'
+
+      }
+    }
+  })
+  .state('tab.setting-pairing', {
+    url: '/setting/pairing',
+    views: {
+      'tab-setting': {
+        templateUrl: 'templates/tab-setting-pairing.html',
+        // controller: 'SettingCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/start');
 
 });
 
