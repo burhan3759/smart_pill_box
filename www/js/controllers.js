@@ -27,14 +27,10 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-<<<<<<< HEAD
 }) 
 
 .controller ('ReminderCtrl', function () {
 
-}); 
-
-=======
 })
 
 .controller('SettingCtrl', function($scope,$state) {
@@ -91,5 +87,4 @@ angular.module('starter.controllers', [])
 
   }, false);
 });
->>>>>>> 5005a076e3725fcd9f7074c27c49a0c6cf3c8aac
 
