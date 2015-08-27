@@ -1,0 +1,19 @@
+<ion-view view-title="Pairing mode">
+  <ion-content class="padding">
+    
+  <div class="list card">
+    <div class="item item-icon-left item-divider">
+      <i class="icon ion-code-working"></i>
+      <b>Pairing Code</b>
+    </div>
+    <div class="item large" style="text-align: center;">
+      {{code}}
+    </div>
+  </div>
+
+  Debug:
+  <a class="button" href="#pillboxmode">Check</a>
+  <button class="button" ng-click="clear()">Clear localStorage</button>
+
+  </ion-content>
+</ion-view>
