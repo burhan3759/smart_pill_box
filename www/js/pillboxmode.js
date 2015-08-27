@@ -35,7 +35,7 @@ angular.module('starter.pillBoxMode', [])
   });
 })
 
-.controller('PairCtrl', function($scope) {
+.controller('PairCtrl', function($scope, $state) {
   if (localStorage[':DID'] !== undefined) {
     //Get from localStorage
     console.log("not empty");
@@ -82,6 +82,7 @@ angular.module('starter.pillBoxMode', [])
 
         if(object.get('User') !== undefined){
           console.log("Retrieved object from parse " + object.get('User'));
+          $state.go('pillboxmode');
         } else {
           console.log("Not paired with any user");
         }
@@ -90,7 +91,7 @@ angular.module('starter.pillBoxMode', [])
       console.log("Error: " + error.code + " " + error.message);
     }
     });
-  }, 5000);
+  }, 3000);
 
 
   $scope.clear = function() {
