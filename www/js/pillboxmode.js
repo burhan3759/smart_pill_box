@@ -2,40 +2,23 @@ angular.module('starter.pillBoxMode', [])
 
 .controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
 
-  // var options = { frequency: 20000 };
-
-  // $ionicPlatform.ready(function() {
-  //   console.log($cordovaDeviceMotion);
-
-  //   function onSuccess(acceleration) {
-  //   alert('Acceleration X: ' + acceleration.x + '\n' +
-  //         'Acceleration Y: ' + acceleration.y + '\n' +
-  //         'Acceleration Z: ' + acceleration.z + '\n' +
-  //         'Timestamp: '      + acceleration.timestamp + '\n');
-  //   };
-
-  //   function onError() {
-  //       alert('onError!');
-  //   };
-
-  //   $scope.getXYZ = function() {
-  //     console.log("pressed");
-  //   navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-  // };
-    // $scope.getXYZ = function() {
-    //   navigator.accelerometer.getCurrentAcceleration().then(function(result) {
-    //     console.log("inside");
-    //     var X = result.x;
-    //     var Y = result.y;
-    //     var Z = result.z;
-    //     var timeStamp = result.timestamp;
-    //     alert(x+y+z);
-    //   }, function(err) {
-    //     // An error occurred. Show a message to the user
-    //   });
-    // };
+  $ionicPlatform.ready(function() {
     
-  // });  
+    $scope.getXYZ = function() {
+      $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
+        var X = result.x;
+        var Y = result.y;
+        var Z = result.z;
+        alert("X: " + X + "\n" +
+          "Y: " + Y + "\n" +
+          "Z: " + Z);
+      }, function(err) {
+        // An error occurred. Show a message to the user
+      });
+    };
+    
+
+  });
 })
 
 .controller('PairCtrl', function($scope) {
