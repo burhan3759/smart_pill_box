@@ -63,7 +63,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/start.html',
   })
 
-  // Each tab has its own nav history stack:
+  .state('pairing', {
+    url: '/pairing',
+    templateUrl: 'templates/pairing.html',
+    controller: 'PairCtrl',
+  })
+
+  .state('pillboxmode', {
+    url: '/pillboxmode',
+    templateUrl: 'templates/pillboxmode.html',
+    controller: 'PillboxCtrl',
+  })
 
   .state('tab.dash', {
     url: '/dash',
