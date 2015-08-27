@@ -65,11 +65,11 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
   })
   $scope.timePickerObject = {
     inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
-    step: 15,  //Optional
+    step: 1,  //Optional
     format: 12,  //Optional
     titleLabel: '12-hour Format',  //Optional
     setLabel: 'Set',  //Optional
-    closeLabel: 'Close',  //Optional
+    closeLabel: 'Cancel',  //Optional
     setButtonType: 'button-positive',  //Optional
     closeButtonType: 'button-stable',  //Optional
   callback: function (val) {    //Mandatory
