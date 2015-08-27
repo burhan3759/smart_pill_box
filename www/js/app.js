@@ -126,7 +126,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     .state('tab.setReminder', {
       url: '/reminder',
       views: {
-        'tab-chats': {
+        'tab-dash': {
           templateUrl: 'templates/setReminder.html',
           controller: 'ReminderCtrl'
         }
@@ -135,7 +135,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     .state('tab.setPillReminder', {
       url: '/setPillReminder',
       views: {
-        'tab-chats': {
+        'tab-dash': {
           templateUrl: 'templates/setPillReminder.html',
           controller: 'ReminderCtrl'
         }
