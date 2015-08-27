@@ -1,40 +1,16 @@
 angular.module('starter.login', [])
 
-.controller('userCtrl',function($scope, $ionicLoading, $rootScope,$state){
+.controller('userCtrl',function($scope, $state){
 	$scope.user = {};
 
-    $scope.login = function() {
-        $scope.loading = $ionicLoading.show({
-            content: 'Logging in',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0
-        });
-
-	
+    $scope.login = function() {	
 	  Parse.User.logIn($scope.user.username, $scope.user.password, {
 	    success: function(user) {
-	      // Do stuff after successful login.
-	      console.log(user);
-	   
-		    $ionicLoading.hide();
-	        $rootScope.user = user;
-	        $rootScope.isLoggedIn = true;
-	        $state.go('tab.dash', {
-	            clear: true
-	        });
-	    },
-	    error: function(user, error) {
-	      $ionicLoading.hide();
+	  		// alert("Success!");
+	  		$state.go('tab.dash');
+	    },error: function(user, error) {
 	      // The login failed. Check error to see why.
-	        if (err.code === 101) {
-                $scope.error.message = 'Invalid login credentials';
-            } else {
-                $scope.error.message = 'An unexpected error has ' +
-                    'occurred, please try again.';
-            }
-            $scope.$apply();
+	      alert(error);
 	    }
 	  });
 	};
@@ -50,8 +26,6 @@ angular.module('starter.login', [])
 	  	console.log("conpas " + $scope.user.confirmPassword + " pas: "+$scope.user.password);
 	  }else{
 	  	$scope.msg = "";
-	  
-
 		  //Create a new user on Parse
 		  var user = new Parse.User();
 		  user.set("username", $scope.user.username);
@@ -64,7 +38,8 @@ angular.module('starter.login', [])
 		  user.signUp(null, {
 		    success: function(user) {
 		      // Hooray! Let them use the app now.
-		      alert("success!");
+		      alert("Successfully created account");
+		      $state.go('tab.dash');
 		    },
 		    error: function(user, error) {
 		      // Show the error message somewhere and let the user try again.

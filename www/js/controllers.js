@@ -38,8 +38,13 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 .controller('SettingCtrl', function($scope,$state) {
 
   $scope.logout = function(){
+
    Parse.User.logOut();
    $state.go('tab.login');
+
+    Parse.User.logOut();
+    $state.go('login');
+
   };
 })
 

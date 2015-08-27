@@ -1,5 +1,5 @@
 <ion-view title="Sign Up">
-    <ion-content padding="true" class="has-header">
+    <ion-content class="has-header padding">
         <form>
             <ion-list>
                 <label class="item item-input">
@@ -12,16 +12,11 @@
                     <input type="password" placeholder="Password" ng-model="user.password">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Confirm Password</span>
-                    <input type="password" placeholder="At least 6 characters" ng-model="user.confirmPassword">
+                    <input type="password" placeholder="Confirm Password" ng-model="user.confirmPassword">
                 </label>
             </ion-list>
-<<<<<<< HEAD
             {{msg}}
-            <button class="button button-stable button-block" ng-click="signupEmail()">Done</button>
-=======
-            <button class="button button-stable button-block" ng-click="signupEmail()">Sign Up</button>
->>>>>>> 643f19a3a1d40200fe4c81208b647a0389075151
+            <button class="button button-positive button-block" ng-click="signupEmail()">Sign Up</button>
         </form>
     </ion-content>
 </ion-view>
