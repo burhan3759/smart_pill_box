@@ -6,7 +6,7 @@ angular.module('starter.login', [])
     $scope.login = function() {	
 	  Parse.User.logIn($scope.user.username, $scope.user.password, {
 	    success: function(user) {
-	  		alert("success!");
+	  		// alert("Success!");
 	  		$state.go('tab.dash');
 	    },error: function(user, error) {
 	      // The login failed. Check error to see why.
@@ -38,7 +38,8 @@ angular.module('starter.login', [])
 		  user.signUp(null, {
 		    success: function(user) {
 		      // Hooray! Let them use the app now.
-		      alert("success!");
+		      alert("Successfully created account");
+		      $state.go('tab.dash');
 		    },
 		    error: function(user, error) {
 		      // Show the error message somewhere and let the user try again.
