@@ -39,13 +39,20 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 
   $scope.logout = function(){
     Parse.User.logOut();
-    $state.go('login');
+    $state.go('start');
   };
   
 })
 
-.controller('MainCtrl', function($scope, $ionicModal) {
-
+.controller('MainCtrl', function($state, $scope, $ionicModal) {
+  $scope.loggedIn = function() {
+    var currentUser = Parse.User.current();
+    if (currentUser) {
+      $state.go('tab.dash');
+    } else {
+      $state.go('login');
+    }
+  };
 
   $ionicModal.fromTemplateUrl('reminderEdit.html', {
     scope: $scope,
