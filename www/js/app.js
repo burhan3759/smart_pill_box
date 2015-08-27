@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +21,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleLightContent();
     }
   });
+
+  Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
+  // var currentUser = Parse.User.current();
+
+  //User logged in or not sample
+  // $rootScope.user = null;
+  // $rootScope.isLoggedIn = false;
+
+  // if (currentUser) {
+  //   $rootScope.user = currentUser;
+  //   $rootScope.isLoggedIn = true;
+  //   $state.go('app.home');
+  // }
+
+  //Parse connection test.
+  // var TestObject = Parse.Object.extend("TestObject");
+  // var testObject = new TestObject();
+  // testObject.save({foo: "bar"}).then(function(object) {
+  //   alert("yay! it worked");
+  // });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -55,6 +76,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.login', {
+      url: '/login',
+      views: {
+        'tab-user': {
+          templateUrl: 'templates/login.html',
+          controller: 'userCtrl'
+        }
+      }
+  })
+  .state('tab.signup', {
+      url: '/signup',
+      views: {
+        'tab-user': {
+          templateUrl: 'templates/signup.html',
+          controller: 'userCtrl'
+        }
+      }
+  })
   .state('tab.setting', {
     url: '/setting',
     views: {
@@ -68,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/setting/pairing',
     views: {
       'tab-setting': {
-        templateUrl: 'templates/tab-setting-pairing.html',
+        templateUrl: 'templates/tab-setting-pairing.html'
         // controller: 'SettingCtrl'
       }
     }
@@ -97,3 +136,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/start');
 
 });
+
+// .run(function ($state, $rootScope) {
+//     Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
+//     var currentUser = Parse.User.current();
+//     $rootScope.user = null;
+//     $rootScope.isLoggedIn = false;
+
+//     if (currentUser) {
+//         $rootScope.user = currentUser;
+//         $rootScope.isLoggedIn = true;
+//         $state.go('app.home');
+//     }
+// });

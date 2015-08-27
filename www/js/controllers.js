@@ -37,7 +37,12 @@ angular.module('starter.controllers', [])
 =======
 })
 
-.controller('SettingCtrl', function($scope) {
+.controller('SettingCtrl', function($scope,$state) {
+
+  $scope.logout = function(){
+    Parse.User.logOut();
+    $state.go('tab.login');
+  }
   
 })
 

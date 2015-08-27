@@ -1,0 +1,20 @@
+<ion-view view-title="Login">
+  <ion-content padding="4">
+      <form>
+        <ion-list>
+            <label class="item item-input">
+                <span class="input-label">Username</span>
+                <input type="text" placeholder="enter your username..." ng-model="user.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password" placeholder="enter your password..." ng-model="user.password">
+            </label>
+        </ion-list>
+        <button class="button button-stable button-block" ng-click="login()">Sign In</button>
+    </form>
+      <a href = "#/tab/signup" class="button button-positive" style="width: 100%; margin: 20px 0;">
+        Sign Up
+      </a>
+  </ion-content>
+</ion-view>
