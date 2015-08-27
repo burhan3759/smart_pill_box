@@ -3,21 +3,30 @@ angular.module('starter.pillBoxMode', [])
 .controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
 
   $ionicPlatform.ready(function() {
-    
-    $scope.getXYZ = function() {
-      $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
+    $scope.accel = {};
+
+    var options = {
+      frequency: 200
+    };
+
+    var watch = $cordovaDeviceMotion.watchAcceleration(options);
+    watch.then(
+      null,
+      function(error) {
+        // An error occurred
+      },
+      function(result) {
         var X = result.x;
         var Y = result.y;
         var Z = result.z;
-        alert("X: " + X + "\n" +
-          "Y: " + Y + "\n" +
-          "Z: " + Z);
-      }, function(err) {
-        // An error occurred. Show a message to the user
-      });
-    };
-    
+        var timeStamp = result.timestamp;
 
+        $scope.accel = {
+          X: X,
+          Y: Y,
+          Z: Z,
+        };
+      });
   });
 })
 
@@ -36,7 +45,7 @@ angular.module('starter.pillBoxMode', [])
 
     var Pillbox = Parse.Object.extend("Pillbox");
     var pillbox = new Pillbox();
-    
+
     pillbox.set("Pid", $scope.code);
 
     pillbox.save(null, {
