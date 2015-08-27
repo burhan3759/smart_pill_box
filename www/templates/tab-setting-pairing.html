@@ -1,8 +1,17 @@
 <ion-view view-title="Pairing">
-  <ion-content>
-    <ion-list>
-    	<ion-item>Device pairing</ion-item>
-    	<ion-item>Enter 4 numbers to pair..</ion-item>
-    </ion-list>
+  <ion-content class="padding">
+    
+  <div class="list card">
+    <div class="item item-icon-left item-divider">
+      <i class="icon ion-code-working"></i>
+      <b>Pairing Code</b>
+    </div>
+    <label class="item item-input">
+        <input type="text" placeholder="CODE" ng-model="data.pillId">
+    </label>
+  </div>
+  {{msg}}
+  <button  ng-click="checkID()">Pair</button>
+
   </ion-content>
 </ion-view>

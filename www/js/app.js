@@ -109,8 +109,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     url: '/setting/pairing',
     views: {
       'tab-setting': {
-        templateUrl: 'templates/tab-setting-pairing.html'
-        // controller: 'SettingCtrl'
+        templateUrl: 'templates/tab-setting-pairing.html',
+        controller: 'PairingCtrl'
       }
     }
   })

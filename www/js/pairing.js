@@ -1,29 +1,32 @@
 angular.module('starter.pairing', [])
 
-.controller('PairCtrl',function($scope,$state){
+.controller('PairingCtrl',function($scope,$state){
 
 	$scope.data = {};
-
-	var pid = JSON.stringify($scope.data);
-
-
-	  //get PID = pill unique id
+	// var pid = JSON.stringify($scope.data);
+	$scope.checkID = function(){
+		  //get PID = pill unique id
 	  var Question = Parse.Object.extend("Pillbox");
 	  var query = new Parse.Query(Question);
-	  query.equalTo("Pid", "3389");
-		//   query.descending("createdAt");
-	  // query.startsWith("Pid", "aasdas");
+	  query.equalTo("Pid",$scope.data.pillId);
 	  query.first({
 	  	success: function(object) {
 	      // Successfully retrieved the object.
+	      if(object === 'undefined'){
+	      	$scope.msg = "COde did not Match!!";
+	      }
 	      console.log("Retrieved object from parse " + object.get('Pid'));
-	  },
-	  error: function(error) {
-	  	console.log("Error: " + error.code + " " + error.message);
-	  }
-	});
+	      $scope.Pillbox = object;
+	      $scope.pid = object.get('Pid');
+	      $state.go('tab.setPillReminder');
+		},
+		error: function(error) {
+		  console.log("Error: " + error.code + " " + error.message);
+		}
+	  });
+	}
 
-  $scope.saveToParse = function(exercise) {
+  $scope.saveToParse = function(Pillbox) {
 
 	var Exercises = Parse.Object.extend("Exercises");
 	var exercises = new Exercises();
@@ -32,13 +35,15 @@ angular.module('starter.pairing', [])
 
 		exercises.fetch()
 		.then(function(){
-		      exercises.set({exerciseName: exercise.ExerciseName,
-		          exerciseID: exercise.ExerciseID,
-		          exerciseDescription: exercise.Description,
-		          sets: exercise.Sets,
-		          reps: exercise.Reps,
-		          resistance: exercise.Resistance,
-		          tempo: exercise.Tempo,
+		      exercises.set({ObjectId: Pillbox.objID,
+		          Pid: Pillbox.pID,
+		          Monday: Pillbox.monday,
+		          Tueday: Pillbox.tuesday,
+		          Wednesday: Pillbox.wednesday,
+		          Thursday: Pillbox.thursday,
+		          Friday: Pillbox.friday,
+		          Saturday: Pillbox.saturday,
+		          Sunday: Pillbox.sunday,
 		          images: $scope.images})
 
 		      return exercises.save();
