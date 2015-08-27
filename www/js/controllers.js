@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 
 .controller('DashCtrl', function($scope) {
 
@@ -44,49 +44,51 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('MotionCtrl', function($scope, $cordovaDeviceMotion) {
-  document.addEventListener("deviceready", function () {
-
-    $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
-      var X = result.x;
-      var Y = result.y;
-      var Z = result.z;
-      var timeStamp = result.timestamp;
-    }, function(err) {
-      // An error occurred. Show a message to the user
-    });
-
-  }, false);
+.controller('MainCtrl', function($scope, $ionicModal) {
 
 
-  // watch Acceleration
-  var options = { frequency: 20000 };
+  $ionicModal.fromTemplateUrl('reminderEdit.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal
+  })  
 
-  document.addEventListener("deviceready", function () {
+  $scope.openModal = function() {
+    $scope.modal.show()
+  }
 
-    var watch = $cordovaDeviceMotion.watchAcceleration(options);
-    watch.then(
-      null,
-      function(error) {
-      // An error occurred
-      },
-      function(result) {
-        var X = result.x;
-        var Y = result.y;
-        var Z = result.z;
-        var timeStamp = result.timestamp;
-    });
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
 
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove(); 
+  })
+  $scope.timePickerObject = {
+    inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
+    step: 1,  //Optional
+    format: 12,  //Optional
+    titleLabel: '12-hour Format',  //Optional
+    setLabel: 'Set',  //Optional
+    closeLabel: 'Cancel',  //Optional
+    setButtonType: 'button-positive',  //Optional
+    closeButtonType: 'button-stable',  //Optional
+  callback: function (val) {    //Mandatory
+    $scope.timePickerCallback(val);
 
-    watch.clearWatch();
-    // OR
-    $cordovaDeviceMotion.clearWatch(watch)
-      .then(function(result) {
-        // success
-        }, function (error) {
-        // error
-      });
+  }
+};
 
-  }, false);
-});
+  $scope.timePickerCallback = function(time){
+      if (typeof (time) === 'undefined') {
+    console.log('Time not selected');
+  } else {
+    var selectedTime = new Date(time * 1000);
+    console.log('Selected epoch is : ', time, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
+  }
+  };
+// };
+  // });
+ });
 
