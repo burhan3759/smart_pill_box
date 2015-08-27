@@ -137,7 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
       views: {
         'tab-dash': {
           templateUrl: 'templates/setPillReminder.html',
-          controller: 'ReminderCtrl'
+          controller: 'MainCtrl'
         }
       }
     });

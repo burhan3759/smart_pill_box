@@ -31,8 +31,8 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 
 
 
-.controller ('ReminderCtrl', function () {
-
+.controller ('ReminderCtrl', function ( ) {
+  
 })
 
 .controller('SettingCtrl', function($scope,$state) {
@@ -80,6 +80,12 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
   }
 };
 
+  $scope.data={};
+
+  $scope.noOfPills = function(){
+      console.log($scope.data.pills);
+  };
+
   $scope.timePickerCallback = function(time){
       if (typeof (time) === 'undefined') {
     console.log('Time not selected');
@@ -88,7 +94,6 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
     console.log('Selected epoch is : ', time, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
   }
   };
-// };
-  // });
+
  });
 
