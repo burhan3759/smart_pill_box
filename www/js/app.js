@@ -146,16 +146,3 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
   $urlRouterProvider.otherwise('/start');
 
 });
-
-// .run(function ($state, $rootScope) {
-//     Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
-//     var currentUser = Parse.User.current();
-//     $rootScope.user = null;
-//     $rootScope.isLoggedIn = false;
-
-//     if (currentUser) {
-//         $rootScope.user = currentUser;
-//         $rootScope.isLoggedIn = true;
-//         $state.go('app.home');
-//     }
-// });
