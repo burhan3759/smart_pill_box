@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,26 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleLightContent();
     }
   });
-
-  Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
-  var currentUser = Parse.User.current();
-
-  //User logged in or not sample
-  // $rootScope.user = null;
-  // $rootScope.isLoggedIn = false;
-
-  // if (currentUser) {
-  //   $rootScope.user = currentUser;
-  //   $rootScope.isLoggedIn = true;
-  //   $state.go('app.home');
-  // }
-
-  //Parse connection test.
-  // var TestObject = Parse.Object.extend("TestObject");
-  // var testObject = new TestObject();
-  // testObject.save({foo: "bar"}).then(function(object) {
-  //   alert("yay! it worked");
-  // });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -97,7 +77,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+
+    .state('tab.setReminder', {
+      url: '/reminder',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/setReminder.html',
+          controller: 'ReminderCtrl'
+        }
+      }
+    })
+    .state('tab.setPillReminder', {
+      url: '/setPillReminder',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/setPillReminder.html',
+          controller: 'ReminderCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
