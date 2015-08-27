@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login'])
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
-  var currentUser = Parse.User.current();
+  // var currentUser = Parse.User.current();
 
   //User logged in or not sample
   // $rootScope.user = null;
@@ -41,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // testObject.save({foo: "bar"}).then(function(object) {
   //   alert("yay! it worked");
   // });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -85,36 +86,76 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.login', {
+      url: '/login',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-user': {
+          templateUrl: 'templates/login.html',
+          controller: 'userCtrl'
         }
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+  })
+  .state('tab.signup', {
+      url: '/signup',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-user': {
+          templateUrl: 'templates/signup.html',
+          controller: 'userCtrl'
         }
       }
-    })
-
-  .state('tab.account', {
-    url: '/account',
+  })
+  .state('tab.setting', {
+    url: '/setting',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-setting': {
+        templateUrl: 'templates/tab-setting.html',
+        controller: 'SettingCtrl'
       }
     }
-  });
+  })
+  .state('tab.setting-pairing', {
+    url: '/setting/pairing',
+    views: {
+      'tab-setting': {
+        templateUrl: 'templates/tab-setting-pairing.html'
+        // controller: 'SettingCtrl'
+      }
+    }
+  })
+
+    .state('tab.setReminder', {
+      url: '/reminder',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/setReminder.html',
+          controller: 'ReminderCtrl'
+        }
+      }
+    })
+    .state('tab.setPillReminder', {
+      url: '/setPillReminder',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/setPillReminder.html',
+          controller: 'ReminderCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/start');
 
 });
+
+// .run(function ($state, $rootScope) {
+//     Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
+//     var currentUser = Parse.User.current();
+//     $rootScope.user = null;
+//     $rootScope.isLoggedIn = false;
+
+//     if (currentUser) {
+//         $rootScope.user = currentUser;
+//         $rootScope.isLoggedIn = true;
+//         $state.go('app.home');
+//     }
+// });
