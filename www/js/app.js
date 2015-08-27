@@ -24,20 +24,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
   var currentUser = Parse.User.current();
-  $rootScope.user = null;
-  $rootScope.isLoggedIn = false;
 
-  if (currentUser) {
-    $rootScope.user = currentUser;
-    $rootScope.isLoggedIn = true;
-    $state.go('app.home');
-  }
+  //User logged in or not sample
+  // $rootScope.user = null;
+  // $rootScope.isLoggedIn = false;
 
-  var TestObject = Parse.Object.extend("TestObject");
-  var testObject = new TestObject();
-  testObject.save({foo: "bar"}).then(function(object) {
-    alert("yay! it worked");
-  });
+  // if (currentUser) {
+  //   $rootScope.user = currentUser;
+  //   $rootScope.isLoggedIn = true;
+  //   $state.go('app.home');
+  // }
+
+  //Parse connection test.
+  // var TestObject = Parse.Object.extend("TestObject");
+  // var testObject = new TestObject();
+  // testObject.save({foo: "bar"}).then(function(object) {
+  //   alert("yay! it worked");
+  // });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
