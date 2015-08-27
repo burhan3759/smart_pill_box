@@ -74,6 +74,7 @@ angular.module('starter.pillBoxMode', [])
         // Execute any logic that should take place if the save fails.
         // error is a Parse.Error with an error code and message.
         alert('Failed to create new object, with error code: ' + error.message);
+        localStorage['idUploadStatus'] = JSON.stringify(false);
       }
     });
   }
