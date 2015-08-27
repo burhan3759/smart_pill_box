@@ -1,54 +1,30 @@
 angular.module('starter.pillBoxMode', [])
 
-.controller('PillboxCtrl', function($scope, $cordovaDeviceMotion) {
-    //Motion sensing stuff
-    // document.addEventListener("deviceready", function () {
-  
-    //   $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
-    //     var X = result.x;
-    //     var Y = result.y;
-    //     var Z = result.z;
-    //     var timeStamp = result.timestamp;
-    //   }, function(err) {
-    //     // An error occurred. Show a message to the user
-    //   });
-  
-    // }, false);
-  
-  
-    // watch Acceleration
-    var options = { frequency: 20000 };
-  
-    document.addEventListener("deviceready", function () {
-  
-      var watch = $cordovaDeviceMotion.watchAcceleration(options);
-      watch.then(
-        null,
-        function(error) {
-        // An error occurred
-        },
-        function(result) {
-          $scope.accel.X = result.x;
-          $scope.accel.Y = result.y;
-          $scope.accel.Z = result.z;
-          $scope.accel.timeStamp = result.timestamp;
+.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
+
+  var options = { frequency: 20000 };
+
+  $ionicPlatform.ready(function() {
+    console.log($cordovaDeviceMotion);
+
+    $scope.getXYZ = function() {
+      $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
+        console.log("inside");
+        var X = result.x;
+        var Y = result.y;
+        var Z = result.z;
+        var timeStamp = result.timestamp;
+        alert(x+y+z);
+      }, function(err) {
+        // An error occurred. Show a message to the user
       });
-  
-  
-      // watch.clearWatch();
-      // // OR
-      // $cordovaDeviceMotion.clearWatch(watch)
-      //   .then(function(result) {
-      //     // success
-      //     }, function (error) {
-      //     // error
-      //   });
-  
-    }, false);
+    };
+    
+  });
 })
 
 .controller('PairCtrl', function($scope) {
-  if (localStorage[':DID'] != undefined) {
+  if (localStorage[':DID'] !== undefined) {
     //Get from localStorage
     console.log("not empty");
     $scope.code = JSON.parse(localStorage[':DID'] || '{}');
