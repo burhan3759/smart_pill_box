@@ -12,19 +12,26 @@ angular.module('starter.pairing', [])
 	  query.first({
 	  	success: function(object) {
 	      // Successfully retrieved the object.
-	      if(object === 'undefined'){
-	      	$scope.msg = "COde did not Match!!";
+	      if(object !== undefined){
+	      	console.log("Retrieved object from parse " + object.get('Pid'));
+		    $scope.Pillbox = object;
+		    $scope.pid = object.get('Pid');
+
+		    object.set("User", Parse.User.current());
+			object.save();
+
+
+		    $state.go('tab.setPillReminder');
+	      } else {
+	      	$scope.msg = "Code did not Match!!";
 	      }
-	      console.log("Retrieved object from parse " + object.get('Pid'));
-	      $scope.Pillbox = object;
-	      $scope.pid = object.get('Pid');
-	      $state.go('tab.setPillReminder');
+	      
 		},
 		error: function(error) {
 		  console.log("Error: " + error.code + " " + error.message);
 		}
 	  });
-	}
+	};
 
   $scope.saveToParse = function(Pillbox) {
 

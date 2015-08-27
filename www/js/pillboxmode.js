@@ -1,29 +1,5 @@
 angular.module('starter.pillBoxMode', [])
-
-.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
-
-  var options = { frequency: 20000 };
-
-  $ionicPlatform.ready(function() {
-    console.log($cordovaDeviceMotion);
-
-    $scope.getXYZ = function() {
-      $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
-        console.log("inside");
-        var X = result.x;
-        var Y = result.y;
-        var Z = result.z;
-        var timeStamp = result.timestamp;
-        alert(x+y+z);
-      }, function(err) {
-        // An error occurred. Show a message to the user
-      });
-    };
-    
-  });
-})
-
-.controller('PairCtrl', function($scope) {
+.controller('PairCtrl', function($scope, $state) {
   if (localStorage[':DID'] !== undefined) {
     //Get from localStorage
     console.log("not empty");
@@ -38,7 +14,7 @@ angular.module('starter.pillBoxMode', [])
 
     var Pillbox = Parse.Object.extend("Pillbox");
     var pillbox = new Pillbox();
-    
+
     pillbox.set("Pid", $scope.code);
 
     pillbox.save(null, {
@@ -55,8 +31,83 @@ angular.module('starter.pillBoxMode', [])
     });
   }
 
+  //Execute code every 5 second
+  var myTimer = setInterval(function() {
+    console.log("code runnned");
+    var Question = Parse.Object.extend("Pillbox");
+    var query = new Parse.Query(Question);
+    query.equalTo("Pid",$scope.code);
+    query.first({
+      success: function(object) {
+        // Successfully retrieved the object.
+        if(object !== undefined){
+          console.log("Retrieved object from parse " + object.get('Pid'));
+          clearInterval(myTimer);
+        }
+
+        if(object.get('User') !== undefined){
+          console.log("Retrieved object from parse " + object.get('User'));
+          $state.go('pillboxmode');
+        } else {
+          console.log("Not paired with any user");
+        }
+    },
+    error: function(error) {
+      console.log("Error: " + error.code + " " + error.message);
+    }
+    });
+  }, 3000);
+
+
   $scope.clear = function() {
     window.localStorage.clear();
     window.location.reload(true);
   };
+})
+
+.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
+  $scope.code = JSON.parse(localStorage[':DID']);
+
+  $ionicPlatform.ready(function() {
+    $scope.accel = {};
+
+    var options = {
+      frequency: 1000
+    };
+
+    var watch = $cordovaDeviceMotion.watchAcceleration(options);
+    watch.then(
+      null,
+      function(error) {
+        // An error occurred
+      },
+      function(result) {
+        var X = result.x;
+        var Y = result.y;
+        var Z = result.z;
+        var timeStamp = result.timestamp;
+
+        $scope.accel = {
+          X: X,
+          Y: Y,
+          Z: Z,
+        };
+
+        // var oldValue = 0.0;
+        // var newValue = 0.0;
+        // var cache = 0.0;
+
+        // if (oldValue === 0.0) {
+        //   oldValue = X;
+        // } else {
+        //   newValue = X
+        // }
+        if (X > 1.0) {
+          $scope.test = true;
+        } else {
+          $scope.test = false;
+        }
+
+      });
+  });
 });

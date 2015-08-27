@@ -5,9 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode','starter.pairing','starter.mainCtrl'])
+Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
 
-.run(function($ionicPlatform) {
+
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode', 'ngCordova', 'starter.pairing','starter.mainCtrl'])
+.run(function($ionicPlatform, $cordovaDeviceMotion, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,31 +23,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
       StatusBar.styleLightContent();
     }
   });
-
-  Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
-  // var currentUser = Parse.User.current();
-
-  //User logged in or not sample
-  // $rootScope.user = null;
-  // $rootScope.isLoggedIn = false;
-
-  // if (currentUser) {
-  //   $rootScope.user = currentUser;
-  //   $rootScope.isLoggedIn = true;
-  //   $state.go('app.home');
-  // }
-
-  //Parse connection test.
-  // var TestObject = Parse.Object.extend("TestObject");
-  // var testObject = new TestObject();
-  // testObject.save({foo: "bar"}).then(function(object) {
-  //   alert("yay! it worked");
-  // });
-
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+  var route = '/start';
+  console.log(route);
+  var currentUser = Parse.User.current();
 
+  if (currentUser) {
+    console.log("logged in");
+    route = '/tab/dash';
+  } else {
+    console.log("not logged in");
+  }
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -62,6 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
   .state('start', {
     url: '/start',
     templateUrl: 'templates/start.html',
+    controller: 'MainCtrl',
   })
 
   .state('pairing', {
@@ -135,6 +126,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/start');
-
+  $urlRouterProvider.otherwise(route);
 });

@@ -6,11 +6,13 @@
       <h2>Smart Pillbox Mode</h2>
     </div>
     <div class="item">
-      x: {{$scope.accel.X}}<br>
-      y: {{$scope.accel.Y}}<br>
-      z: {{$scope.accel.Z}}<br>
+      x: {{accel.X}}<br>
+      y: {{accel.Y}}<br>
+      z: {{accel.Z}}<br>
     </div>
   </div>
-  <button class="button" ng-click="getXYZ()">Get ACL</button>
+  Status: {{test}} <br>
+  Device ID: {{code}}
+  <a class="button button-block" href="#start">Exit Smart Pillbox Mode</a>
   </ion-content>
 </ion-view>
