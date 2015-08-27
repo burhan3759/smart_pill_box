@@ -6,30 +6,24 @@ angular.module('starter.mainCtrl', ['ionic-timepicker'])
 
   $scope.monday = [{id: '1' ,day:'Monday',}];
   $scope.tuesday = [{id: '2' ,day:'Tuesday'}];
-  $scope.wednesday = {id: '3' ,day:'Wednesday'};
-  $scope.thursday = {id: '4' ,day:'Thursday'};
-  $scope.friday = {id: '5' ,day:'Friday'};
-  $scope.saturday = {id: '6' ,day:'Saturday'};
-  $scope.sunday = {id: '7' ,day:'Sunday'};
+  $scope.wednesday = [{id: '3' ,day:'Wednesday'}];
+  $scope.thursday = [{id: '4' ,day:'Thursday'}];
+  $scope.friday = [{id: '5' ,day:'Friday'}];
+  $scope.saturday = [{id: '6' ,day:'Saturday'}];
+  $scope.sunday = [{id: '7' ,day:'Sunday'}];
 
   $scope.addMore = function(day) {
-    // if(day.day === 'Monday'){ 
-    //   var newItemNo = $scope.monday.length + 1;
-    //     $scope.monday.push({
-    //     'id': newItemNo,
-    //   });}
-    // else if(day.id === '2'){ $scope.selectedDay = $scope.tuesday[num2]}
-    // else if(day.id === '3'){  $scope.selectedDay = $scope.wednesday[num3]}
-    // else if(day.id === '4'){  $scope.selectedDay = $scope.thursday[num4]}
-    // else if(day.id === '5'){  $scope.selectedDay = $scope.friday[num5]}
-    // else if(day.id === '6'){  $scope.selectedDay = $scope.saturday[num6]}
-    // else if(day.id === '7'){  $scope.selectedDay = $scope.sunday[num7]}
       var newItemNo = day.length + 1;
       day.push({
         'id': newItemNo,
-      });
-    
+      });   
   };
+
+  $scope.remove = function(day, idx) {
+    var i = day.indexOf(idx);
+    day.splice(i, 1);   
+  };
+
 
   $ionicModal.fromTemplateUrl('reminderEdit.html', {
     scope: $scope,
