@@ -6,7 +6,7 @@ angular.module('starter.pillBoxMode', [])
     $scope.accel = {};
 
     var options = {
-      frequency: 200
+      frequency: 1000
     };
 
     var watch = $cordovaDeviceMotion.watchAcceleration(options);
@@ -20,12 +20,17 @@ angular.module('starter.pillBoxMode', [])
         var Y = result.y;
         var Z = result.z;
         var timeStamp = result.timestamp;
-
+        
         $scope.accel = {
           X: X,
           Y: Y,
           Z: Z,
         };
+
+        // if (X > 0.5) {
+        //   alert("meng hong is gay");
+        // }
+
       });
   });
 })
