@@ -1,40 +1,4 @@
 angular.module('starter.pillBoxMode', [])
-
-.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
-
-  $ionicPlatform.ready(function() {
-    $scope.accel = {};
-
-    var options = {
-      frequency: 1000
-    };
-
-    var watch = $cordovaDeviceMotion.watchAcceleration(options);
-    watch.then(
-      null,
-      function(error) {
-        // An error occurred
-      },
-      function(result) {
-        var X = result.x;
-        var Y = result.y;
-        var Z = result.z;
-        var timeStamp = result.timestamp;
-
-        $scope.accel = {
-          X: X,
-          Y: Y,
-          Z: Z,
-        };
-
-        // if (X > 0.5) {
-        //   alert("meng hong is gay");
-        // }
-
-      });
-  });
-})
-
 .controller('PairCtrl', function($scope, $state) {
   if (localStorage[':DID'] !== undefined) {
     //Get from localStorage
@@ -68,7 +32,7 @@ angular.module('starter.pillBoxMode', [])
   }
 
   //Execute code every 5 second
-  setInterval(function() {
+  var myTimer = setInterval(function() {
     console.log("code runnned");
     var Question = Parse.Object.extend("Pillbox");
     var query = new Parse.Query(Question);
@@ -78,6 +42,7 @@ angular.module('starter.pillBoxMode', [])
         // Successfully retrieved the object.
         if(object !== undefined){
           console.log("Retrieved object from parse " + object.get('Pid'));
+          clearInterval(myTimer);
         }
 
         if(object.get('User') !== undefined){
@@ -98,4 +63,51 @@ angular.module('starter.pillBoxMode', [])
     window.localStorage.clear();
     window.location.reload(true);
   };
+})
+
+.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
+  $scope.code = JSON.parse(localStorage[':DID']);
+
+  $ionicPlatform.ready(function() {
+    $scope.accel = {};
+
+    var options = {
+      frequency: 1000
+    };
+
+    var watch = $cordovaDeviceMotion.watchAcceleration(options);
+    watch.then(
+      null,
+      function(error) {
+        // An error occurred
+      },
+      function(result) {
+        var X = result.x;
+        var Y = result.y;
+        var Z = result.z;
+        var timeStamp = result.timestamp;
+
+        $scope.accel = {
+          X: X,
+          Y: Y,
+          Z: Z,
+        };
+
+        // var oldValue = 0.0;
+        // var newValue = 0.0;
+        // var cache = 0.0;
+
+        // if (oldValue === 0.0) {
+        //   oldValue = X;
+        // } else {
+        //   newValue = X
+        // }
+        if (X > 1.0) {
+          $scope.test = true;
+        } else {
+          $scope.test = false;
+        }
+
+      });
+  });
 });
