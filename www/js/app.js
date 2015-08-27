@@ -23,26 +23,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
       StatusBar.styleLightContent();
     }
   });
-
-  
-  // console.log(route);
-  //Parse connection test.
-  // var TestObject = Parse.Object.extend("TestObject");
-  // var testObject = new TestObject();
-  // testObject.save({foo: "bar"}).then(function(object) {
-  //   alert("yay! it worked");
-  // });
-
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
   var route = '/start';
   console.log(route);
   var currentUser = Parse.User.current();
-
-  // User logged in or not sample
-  // $rootScope.user = null;
-  // $rootScope.isLoggedIn = false;
 
   if (currentUser) {
     console.log("logged in");
