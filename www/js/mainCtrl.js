@@ -4,8 +4,8 @@ angular.module('starter.mainCtrl', ['ionic-timepicker'])
 
   $scope.days = [{id: '1' ,day:'Monday'},{id: '2' ,day:'Tuesday'},{id: '3' ,day:'Wednesday'},{id: '4' ,day:'Thursday'},{id: '5' ,day:'Friday'},{id: '6' ,day:'Saturday'},{id: '7' ,day:'Sunday'}];
 
-  $scope.monday = {id: '1' ,day:'Monday'};
-  $scope.tuesday = {id: '2' ,day:'Tuesday'};
+  $scope.monday = [{id: '1' ,day:'Monday',}];
+  $scope.tuesday = [{id: '2' ,day:'Tuesday'}];
   $scope.wednesday = {id: '3' ,day:'Wednesday'};
   $scope.thursday = {id: '4' ,day:'Thursday'};
   $scope.friday = {id: '5' ,day:'Friday'};
@@ -13,10 +13,22 @@ angular.module('starter.mainCtrl', ['ionic-timepicker'])
   $scope.sunday = {id: '7' ,day:'Sunday'};
 
   $scope.addMore = function(day) {
-    var newItemNo = $scope.monday.length + 1;
-    $scope.monday.push({
-      'id': 'ID' + newItemNo,
-    });
+    // if(day.day === 'Monday'){ 
+    //   var newItemNo = $scope.monday.length + 1;
+    //     $scope.monday.push({
+    //     'id': newItemNo,
+    //   });}
+    // else if(day.id === '2'){ $scope.selectedDay = $scope.tuesday[num2]}
+    // else if(day.id === '3'){  $scope.selectedDay = $scope.wednesday[num3]}
+    // else if(day.id === '4'){  $scope.selectedDay = $scope.thursday[num4]}
+    // else if(day.id === '5'){  $scope.selectedDay = $scope.friday[num5]}
+    // else if(day.id === '6'){  $scope.selectedDay = $scope.saturday[num6]}
+    // else if(day.id === '7'){  $scope.selectedDay = $scope.sunday[num7]}
+      var newItemNo = day.length + 1;
+      day.push({
+        'id': newItemNo,
+      });
+    
   };
 
   $ionicModal.fromTemplateUrl('reminderEdit.html', {
@@ -25,27 +37,24 @@ angular.module('starter.mainCtrl', ['ionic-timepicker'])
   }).then(function(modal) {
     $scope.modal = modal
   })  
-  // $scope.selectedDay = {};
+  
   $scope.openModal = function(day) {
-    $scope.modal.show();
     console.log(day);
-    // if(day.id === '1'){ $scope.selectedDay = $scope.monday}
-    // else if(day.id === '2'){ day = $scope.tuesday}
-    // else if(day.id === '3'){  day = $scope.wednesday}
-    // else if(day.id === '4'){  day = $scope.thursday}
-    // else if(day.id === '5'){  day = $scope.friday}
-    // else if(day.id === '6'){  day = $scope.saturday}
-    // else if(day.id === '7'){  day = $scope.sunday}
-    $scope.selectedDay = day;
-
-    if($scope.selectedDay.id === '1'){ $scope.selectedDay = $scope.monday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    else if($scope.selectedDay.id === '2'){ $scope.selectedDay = $scope.tuesday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    else if($scope.selectedDay.id === '3'){  $scope.selectedDay = $scope.wednesday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    else if($scope.selectedDay.id === '4'){  $scope.selectedDay = $scope.thursday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    else if($scope.selectedDay.id === '5'){  $scope.selectedDay = $scope.friday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    else if($scope.selectedDay.id === '6'){  $scope.selectedDay = $scope.saturday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    else if($scope.selectedDay.id === '7'){  $scope.selectedDay = $scope.sunday; $scope.selectedDay.id = ($scope.selectedDay.id)}
-    console.log("selectedDay: " + $scope.selectedDay + " monday: " + $scope.monday);
+    var num1 = $scope.monday.length - 1;
+    var num2 = $scope.tuesday.length - 1;
+    var num3 = $scope.wednesday.length - 1;
+    var num4 = $scope.thursday.length - 1;
+    var num5 = $scope.friday.length - 1;
+    var num6 = $scope.saturday.length - 1;
+    var num7 = $scope.sunday.length - 1;
+    $scope.modal.show();
+    if(day.id === '1'){ $scope.selectedDay = $scope.monday[num1]; $scope.arr = $scope.monday;}
+    else if(day.id === '2'){ $scope.selectedDay = $scope.tuesday[num2]; $scope.arr = $scope.tuesday;}
+    else if(day.id === '3'){  $scope.selectedDay = $scope.wednesday[num3]; $scope.arr = $scope.wednesday;}
+    else if(day.id === '4'){  $scope.selectedDay = $scope.thursday[num4]; $scope.arr = $scope.thursday;}
+    else if(day.id === '5'){  $scope.selectedDay = $scope.friday[num5]; $scope.arr = $scope.friday;}
+    else if(day.id === '6'){  $scope.selectedDay = $scope.saturday[num6]; $scope.arr = $scope.saturday;}
+    else if(day.id === '7'){  $scope.selectedDay = $scope.sunday[num7]; $scope.arr = $scope.sunday;}
   }
 
   $scope.closeModal = function() {
