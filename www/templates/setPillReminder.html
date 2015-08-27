@@ -1,57 +1,52 @@
 <ion-view view-title="PillBox A">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" >
-        <h2>Pill ID</h2>  
-        <p></p>
-        <p></p> 
+      <ion-item>
+      </ion-item>
+        <h2>Pill ID</h2>
 
+        <b><font size="5">Prescription Days</font></b>
+        <div class="row">
+        <button class="button button-clear button-positive" ng-click="openModal()">
+          Monday 
+        </button>
+        </div> 
 
+        <div class="row">
+        <button class="button button-clear button-positive" ng-click="openModal()">
+          Tuesday 
+        </button>
+        </div>  
 
-<b><font size="5">Prescription Days</font></b>
- <ul class="list">
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Monday 
-</button>
-</div> 
+        <div class="row">
+        <button class="button button-clear button-positive" ng-click="openModal()">
+          Wednesday 
+        </button>
+        </div> 
 
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Tuesday 
-</button>
-</div>  
+        <div class="row">
+        <button class="button button-clear button-positive" ng-click="openModal()">
+          Thursday 
+        </button>
+        </div>
 
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Wednesday 
-</button>
-</div> 
+        <div class="row">
+        <button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
+          Friday
+        </button> 
+        </div>
 
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Thursday 
-</button>
-</div>
+        <div class="row">
+        <button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
+          Saturday 
+        </button> 
+        </div>
 
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Friday
-</button> 
-</div>
-
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Saturday 
-</button> 
-</div>
-
-<div class="row">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Sunday 
-</button>
-</div>
-
+        <div class="row">
+        <button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
+          Sunday 
+        </button>
+        </div>
 
       </ion-item>
     </ion-list>
@@ -60,27 +55,27 @@
 
 <script id="reminderEdit.html" type="text/ng-template">
 
-    <ion-modal-view style="height: 10%;">
+  <ion-modal-view style="height: 10%;">
     <ion-header-bar>
       <h1 class="title">Set Reminder</h1>
     </ion-header-bar>
     <ion-content padding="4">
       <label class="item item-input item-select" >
-    <div class="input-label" >
-      Number of pills
-    </div>
-    <select ng-model="data.pills">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-    </select>  
-  </label>  
-  <ionic-timepicker input-obj="timePickerObject">
-  <button class="button button-block button-light overflowShow"> What time does he/she take his/her pill(s)?
-    <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
-  </button>
-</ionic-timepicker>
-  <button class="button button-full button-balanced" ng-click="closeModal(); noOfPills()">Done</button>
+        <div class="input-label" >
+          Number of pills
+        </div>
+        <select ng-model="data.pills">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>  
+      </label>  
+      <ionic-timepicker input-obj="timePickerObject">
+        <button class="button button-block button-light overflowShow"> What time does he/she take his/her pill(s)?
+          <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
+        </button>
+      </ionic-timepicker>
+      <button class="button button-full button-balanced" ng-click="closeModal(); noOfPills()">Done</button>
     </ion-content>
   </ion-modal-view>
 </script>
