@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login'])
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -70,6 +70,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.login', {
+      url: '/login',
+      views: {
+        'tab-user': {
+          templateUrl: 'templates/login.html',
+          controller: 'userCtrl'
+        }
+      }
+    })
+  .state('tab.signup', {
+      url: '/signup',
+      views: {
+        'tab-user': {
+          templateUrl: 'templates/signup.html',
+          controller: 'userCtrl'
+        }
+      }
+    })
+
   .state('tab.chats', {
       url: '/chats',
       views: {
@@ -103,3 +122,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+
+.run(function ($state, $rootScope) {
+    Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
+    var currentUser = Parse.User.current();
+    $rootScope.user = null;
+    $rootScope.isLoggedIn = false;
+
+    if (currentUser) {
+        $rootScope.user = currentUser;
+        $rootScope.isLoggedIn = true;
+        $state.go('app.home');
+    }
+})
