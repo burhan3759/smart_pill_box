@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -64,7 +64,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     templateUrl: 'templates/start.html',
   })
 
-  // Each tab has its own nav history stack:
+  .state('pairing', {
+    url: '/pairing',
+    templateUrl: 'templates/pairing.html',
+    controller: 'PairCtrl',
+  })
+
+  .state('pillboxmode', {
+    url: '/pillboxmode',
+    templateUrl: 'templates/pillboxmode.html',
+    controller: 'PillboxCtrl',
+  })
 
   .state('tab.dash', {
     url: '/dash',
@@ -136,16 +146,3 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
   $urlRouterProvider.otherwise('/start');
 
 });
-
-// .run(function ($state, $rootScope) {
-//     Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");
-//     var currentUser = Parse.User.current();
-//     $rootScope.user = null;
-//     $rootScope.isLoggedIn = false;
-
-//     if (currentUser) {
-//         $rootScope.user = currentUser;
-//         $rootScope.isLoggedIn = true;
-//         $state.go('app.home');
-//     }
-// });
