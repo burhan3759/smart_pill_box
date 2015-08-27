@@ -26,7 +26,7 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
    enableFriends: true
-  };
+ };
 })
 
 
@@ -46,7 +46,36 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
     $state.go('login');
 
   };
-})
+}) 
+
+.controller('PushControl', function($scope) {
+parsePlugin.initialize(appId, clientKey, function() {
+
+    parsePlugin.subscribe('SampleChannel', function() {
+
+        parsePlugin.getInstallationId(function(id) {
+
+            
+             var install_data = {
+                installation_id: id,
+                channels: ['SampleChannel']
+             }
+
+        }, function(e) {
+            alert('error');
+        });
+
+    }, function(e) {
+        alert('error');
+    });
+
+}, function(e) {
+    alert('error');
+}) 
+
+}) 
+
+
 
 .controller('MainCtrl', function($scope, $ionicModal) {
 
