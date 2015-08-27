@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode','starter.pairing'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -86,23 +86,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     }
   })
 
-  .state('tab.login', {
-      url: '/login',
-      views: {
-        'tab-user': {
-          templateUrl: 'templates/login.html',
-          controller: 'userCtrl'
-        }
-      }
+  .state('login', {
+    url: '/login',    
+    templateUrl: 'templates/login.html',
+    controller: 'userCtrl'
   })
-  .state('tab.signup', {
+  .state('signup', {
       url: '/signup',
-      views: {
-        'tab-user': {
-          templateUrl: 'templates/signup.html',
-          controller: 'userCtrl'
-        }
-      }
+      templateUrl: 'templates/signup.html',
+      controller: 'userCtrl'
   })
   .state('tab.setting', {
     url: '/setting',
@@ -117,8 +109,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
     url: '/setting/pairing',
     views: {
       'tab-setting': {
-        templateUrl: 'templates/tab-setting-pairing.html'
-        // controller: 'SettingCtrl'
+        templateUrl: 'templates/tab-setting-pairing.html',
+        controller: 'PairingCtrl'
       }
     }
   })

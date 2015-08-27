@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 
   $scope.logout = function(){
     Parse.User.logOut();
-    $state.go('tab.login');
+    $state.go('login');
   };
   
 })
