@@ -14,7 +14,12 @@
                     <span class="input-label">Password</span>
                     <input type="password" placeholder="At least 6 characters" ng-model="user.password">
                 </label>
+                <label class="item item-input">
+                    <span class="input-label">Confirm Password</span>
+                    <input type="password" placeholder="At least 6 characters" ng-model="user.confirmPassword">
+                </label>
             </ion-list>
+            {{msg}}
             <button class="button button-stable button-block" ng-click="signupEmail()">Done</button>
         </form>
     </ion-content>

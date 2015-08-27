@@ -21,7 +21,7 @@ angular.module('starter.login', [])
 		    $ionicLoading.hide();
 	        $rootScope.user = user;
 	        $rootScope.isLoggedIn = true;
-	        $state.go('tab.chats', {
+	        $state.go('tab.dash', {
 	            clear: true
 	        });
 	    },
@@ -44,25 +44,33 @@ angular.module('starter.login', [])
 	//signup code begin
 	$scope.signupEmail = function(){
 
-	  //Create a new user on Parse
-	  var user = new Parse.User();
-	  user.set("username", $scope.user.username);
-	  user.set("password", $scope.user.password);
-	  user.set("email", $scope.user.email);
-	 
-	  // other fields can be set just like with Parse.Object
-	  user.set("somethingelse", "like this!");
-	 
-	  user.signUp(null, {
-	    success: function(user) {
-	      // Hooray! Let them use the app now.
-	      alert("success!");
-	    },
-	    error: function(user, error) {
-	      // Show the error message somewhere and let the user try again.
-	      alert("Error: " + error.code + " " + error.message);
-	    }
-	  });
- 
-	};
+		
+	  if($scope.user.password != $scope.user.confirmPassword){
+	  	$scope.msg = "Please enter same password!!";
+	  	console.log("conpas " + $scope.user.confirmPassword + " pas: "+$scope.user.password);
+	  }else{
+	  	$scope.msg = "";
+	  
+
+		  //Create a new user on Parse
+		  var user = new Parse.User();
+		  user.set("username", $scope.user.username);
+		  user.set("password", $scope.user.password);
+		  user.set("email", $scope.user.email);
+		 
+		  // other fields can be set just like with Parse.Object
+		  user.set("somethingelse", "like this!");
+		 
+		  user.signUp(null, {
+		    success: function(user) {
+		      // Hooray! Let them use the app now.
+		      alert("success!");
+		    },
+		    error: function(user, error) {
+		      // Show the error message somewhere and let the user try again.
+		      alert("Error: " + error.code + " " + error.message);
+		    }
+		  });
+		}
+	}
 });
