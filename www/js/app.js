@@ -52,6 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
   .state('start', {
     url: '/start',
     templateUrl: 'templates/start.html',
+    controller: 'MainCtrl',
   })
 
   .state('pairing', {
