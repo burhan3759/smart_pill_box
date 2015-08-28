@@ -65,7 +65,7 @@ angular.module('starter.pillBoxMode', [])
   };
 })
 
-.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaMedia, $cordovaDeviceMotion) {
+.controller('PillboxCtrl', function($scope, $ionicPlatform, $cordovaMedia, $cordovaDeviceMotion) {
   $scope.code = JSON.parse(localStorage[':DID']);
 
   $scope.play = function(src) {
