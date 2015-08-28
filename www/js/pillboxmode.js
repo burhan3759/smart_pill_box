@@ -1,5 +1,10 @@
 angular.module('starter.pillBoxMode', [])
 .controller('PairCtrl', function($scope, $state) {
+    $scope.clear = function() {
+      window.localStorage.clear();
+      window.location.reload(true);
+    };
+
   if (localStorage[':DID'] !== undefined) {
     //Get from localStorage
     console.log("not empty");

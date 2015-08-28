@@ -1,6 +1,6 @@
 angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templates'])
 
-.controller('MainCtrl', function($scope, $ionicModal) {
+.controller('MainCtrl', function($scope, $ionicModal, $state) {
 
   $scope.days = [{id: '1' ,day:'Monday'},{id: '2' ,day:'Tuesday'},{id: '3' ,day:'Wednesday'},{id: '4' ,day:'Thursday'},{id: '5' ,day:'Friday'},{id: '6' ,day:'Saturday'},{id: '7' ,day:'Sunday'}];
 
@@ -117,6 +117,7 @@ angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templ
           success: function(pillbox) {
             // Execute any logic that should take place after the object is saved.
             alert("done");
+            $state.go('tab.dash');
           },  
           error: function(pillbox, error) {
             // Execute any logic that should take place if the save fails.
