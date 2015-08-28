@@ -25,6 +25,18 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.push','ng
   });
 })
 
+.config(['$ionicAppProvider', function($ionicAppProvider) {
+  // Identify app
+  $ionicAppProvider.identify({
+    // The App ID (from apps.ionic.io) for the server
+    app_id: '0cf24ebe',
+    // The public API key all services will use for this app
+    api_key: '032a803bb5c3d33b1e65af5bce5dc394c76d4423a5ab61d8',
+    // Set the app to use development pushes
+    dev_push: true
+  });
+}])
+
 .config(function($stateProvider, $urlRouterProvider) {
   var route = '/start';
   console.log(route);

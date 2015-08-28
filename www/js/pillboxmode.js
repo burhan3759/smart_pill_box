@@ -103,7 +103,7 @@ angular.module('starter.pillBoxMode', [])
         // } else {
         //   newValue = X
         // }
-        if (X > 1.0) {
+        if (X > 2.0) {
           $scope.test = true;
         } else {
           $scope.test = false;

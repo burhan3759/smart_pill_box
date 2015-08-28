@@ -1,13 +1,16 @@
 angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
 
 .controller('DashCtrl', function($rootScope, $scope, $ionicUser, $ionicPush, $cordovaPush) {
+  $scope.done = function() {
+    return true;
+  };
+
   // Handles incoming device tokens
   $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
     alert("Successfully registered token " + data.token);
     console.log('Ionic Push: Got token ', data.token, data.platform);
     $scope.token = data.token;
   });
-
 
   $scope.identifyUser = function() {
     console.log('Ionic User: Identifying with Ionic User service');
