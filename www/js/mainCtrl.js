@@ -5,12 +5,12 @@ angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templ
   $scope.days = [{id: '1' ,day:'Monday'},{id: '2' ,day:'Tuesday'},{id: '3' ,day:'Wednesday'},{id: '4' ,day:'Thursday'},{id: '5' ,day:'Friday'},{id: '6' ,day:'Saturday'},{id: '7' ,day:'Sunday'}];
 
   $scope.monday = [{id: '1' ,day:'Monday',hours: '9', minutes: '0', meridian: 'AM'}];
-  $scope.tuesday = [{id: '2' ,day:'Tuesday',hours: '8', minutes: '30', meridian: 'AM'}];
-  $scope.wednesday = [{id: '3' ,day:'Wednesday',hours: '9', minutes: '0', meridian: 'AM'}];
-  $scope.thursday = [{id: '4' ,day:'Thursday',hours: '9', minutes: '0', meridian: 'AM'}];
-  $scope.friday = [{id: '5' ,day:'Friday',hours: '9', minutes: '0', meridian: 'AM'}];
-  $scope.saturday = [{id: '6' ,day:'Saturday',hours: '9', minutes: '0', meridian: 'AM'}];
-  $scope.sunday = [{id: '7' ,day:'Sunday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.tuesday = [{id: '1' ,day:'Tuesday',hours: '8', minutes: '30', meridian: 'AM'}];
+  $scope.wednesday = [{id: '1' ,day:'Wednesday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.thursday = [{id: '1' ,day:'Thursday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.friday = [{id: '1' ,day:'Friday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.saturday = [{id: '1' ,day:'Saturday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.sunday = [{id: '1' ,day:'Sunday',hours: '9', minutes: '0', meridian: 'AM'}];
 
   $scope.addMore = function(day) {
       var newItemNo = day.length + 1;
@@ -127,45 +127,44 @@ angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templ
   }
   $scope.time = {};
   
-  $scope.increaseHours = function(hours){
-    console.log(hours);
-    hours = Number(hours);
-    hours += 1;  
-    if(hours === 13){
-      hours = 1;
+  $scope.increaseHours = function(day){
+    day.hours = Number(day.hours);
+    day.hours += 1;  
+    if(day.hours === 13){
+      day.hours = 1;
     }
   }
 
-  $scope.decreaseHours = function(){
-    $scope.time.hours = Number($scope.time.hours)
-    $scope.time.hours -= 1;  
-    if($scope.time.hours === 0){
-      $scope.time.hours = 12;
+  $scope.decreaseHours = function(day){
+    day.hours = Number(day.hours)
+    day.hours -= 1;  
+    if(day.hours === 0){
+      day.hours = 12;
     }
   }
   $scope.time.minutes = 0;
-  $scope.increaseMinutes = function(){
-    $scope.time.minutes = Number($scope.time.minutes);
-    $scope.time.minutes += 1;
-    if($scope.time.minutes === 60){
-      $scope.time.minutes = 0;
+  $scope.increaseMinutes = function(day){
+    day.minutes = Number(day.minutes);
+    day.minutes += 1;
+    if(day.minutes === 60){
+      day.minutes = 0;
     } 
   }
 
-  $scope.decreaseMinutes = function(){
-    $scope.time.minutes = Number($scope.time.minutes);
-    $scope.time.minutes -= 1;
-    if($scope.time.minutes === -1){
-      $scope.time.minutes = 59;
+  $scope.decreaseMinutes = function(day){
+    day.minutes = Number(day.minutes);
+    day.minutes -= 1;
+    if(day.minutes === -1){
+      day.minutes = 59;
     } 
   }
 
   $scope.time.meridian = "AM";
-  $scope.changeMeridian = function(){
-    if($scope.time.meridian === "AM"){
-      $scope.time.meridian = "PM";
+  $scope.changeMeridian = function(day){
+    if(day.meridian === "AM"){
+      day.meridian = "PM";
     }else{
-      $scope.time.meridian = "AM";
+      day.meridian = "AM";
     }
   }
  });
