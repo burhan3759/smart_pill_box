@@ -1,68 +1,48 @@
 <ion-view view-title="Home">
-  <ion-content class="padding"> 
+  <ion-content class="padding">
+
     <div class="list card">
       <div class="item item-divider">
-      <b>Last medication taken</b>
+        <b>Last medication</b>
+      </div>
+      <div class="item item-body item-icon-right">
+        <div>
+          <h1>1:00 PM</h1>
+        </div>
+        <i ng-if="done()" class="icon ion-checkmark-round balanced"></i>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-divider">
+        <b>Next medication</b>
       </div>
       <div class="item item-body">
         <div>
-        <h1>1:00 PM</h1>
+          <h1>7:00 PM</h1>
         </div>
       </div>
     </div>
+
     <div class="list card">
-      <div class="item item-divider">
-      <b>Next medication</b>
-      </div>
-      <div class="item item-body">
-        <div>
-        <h1>7:00 PM</h1>
+      <a href="#tab/setPillReminder" class="item item-icon-left">
+        <div class="padding">
+          <i class="icon ion-android-alarm-clock"></i>
+          <b>To set a reminder</b>
         </div>
-      </div>
+        <div class="padding item-text-wrap lighter">
+          Come on in
+        </div>
+      </a>
     </div>
-    
-<div class="list card">
-    <a href="#tab/setPillReminder" class="item item-icon-left">
-      <div class="padding">
-        <i class="icon ion-android-alarm-clock"></i>
-        <b>To set a reminder</b>
-      </div>
-      <div class="padding item-text-wrap lighter">
-        Come on in
-      </div>
-    </a>
+
+    <button class="button button-block button-dark" ng-click="identifyUser()">
+          Identify a user
+        </button>
+
+        <button class="button button-block button-positive" ng-if="identified" ng-click="pushRegister()">
+          Register for Push
+        </button>
 
   </ion-content>
 </ion-view> 
-
-<script type="text/javascript">
-    parsePlugin.initialize(appId, clientKey, function() {
-        alert('success');
-    }, function(e) { 
-        alert('error');
-    });
-
-    parsePlugin.getInstallationId(function(id) {
-        alert(id);
-    }, function(e) {
-        alert('error');
-    });
-
-    parsePlugin.getSubscriptions(function(subscriptions) {
-        alert(subscriptions);
-    }, function(e) {
-        alert('error');
-    });
-
-    parsePlugin.subscribe('SampleChannel', function() {
-        alert('OK');
-    }, function(e) {
-        alert('error');
-    });
-
-    parsePlugin.unsubscribe('SampleChannel', function(msg) {
-        alert('OK');
-    }, function(e) {
-        alert('error');
-    });
-</script>

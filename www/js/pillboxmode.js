@@ -21,7 +21,8 @@ angular.module('starter.pillBoxMode', [])
     pillbox.save(null, {
       success: function(pillbox) {
         // Execute any logic that should take place after the object is saved.
-        alert('New object created with objectId: ' + pillbox.id);
+        $scope.status = 'Successfully connected with server for pairing';
+        // alert('New object created with objectId: ' + pillbox.id);
       },
       error: function(pillbox, error) {
         // Execute any logic that should take place if the save fails.
@@ -43,12 +44,12 @@ angular.module('starter.pillBoxMode', [])
         // Successfully retrieved the object.
         if(object !== undefined){
           console.log("Retrieved object from parse " + object.get('Pid'));
-          clearInterval(myTimer);
         }
 
         if(object.get('User') !== undefined){
           console.log("Retrieved object from parse " + object.get('User'));
           $state.go('pillboxmode');
+          clearInterval(myTimer);
         } else {
           console.log("Not paired with any user");
         }
@@ -57,7 +58,7 @@ angular.module('starter.pillBoxMode', [])
       console.log("Error: " + error.code + " " + error.message);
     }
     });
-  }, 3000);
+  }, 2000);
 
 
   $scope.clear = function() {
@@ -103,7 +104,7 @@ angular.module('starter.pillBoxMode', [])
         // } else {
         //   newValue = X
         // }
-        if (X > 1.0) {
+        if (X > 2.0) {
           $scope.test = true;
         } else {
           $scope.test = false;
