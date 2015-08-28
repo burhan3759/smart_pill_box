@@ -65,12 +65,17 @@ angular.module('starter.pillBoxMode', [])
   };
 })
 
-.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion, $cordovaMedia) {
+.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaMedia, $cordovaDeviceMotion) {
   $scope.code = JSON.parse(localStorage[':DID']);
 
-  
+  $scope.play = function(src) {
+    var media = new Media(src);
+    // $cordovaMedia.play(media);
+    media.play();
+  }
 
   $ionicPlatform.ready(function() {
+
   //   var src = "Ding.mp3";
   // var media = $cordovaMedia.newMedia(src);
 
@@ -86,25 +91,25 @@ angular.module('starter.pillBoxMode', [])
   //   media.play(); // Android
   // };
 
-  function playAudio(url) {
-    // Play the audio file at url
-    var my_media = new Media(url,
-        // success callback
-        function () { console.log("playAudio():Audio Success"); },
-        // error callback
-        function (err) { console.log("Error: "+err); }
-    );
+//   function playAudio(url) {
+//     // Play the audio file at url
+//     var my_media = new Media(url,
+//         // success callback
+//         function () { console.log("playAudio():Audio Success"); },
+//         // error callback
+//         function (err) { console.log("Error: "+err); }
+//     );
 
-    // Play audio
-    my_media.play();
+//     // Play audio
+//     my_media.play();
 
-    // Pause after 10 seconds
-    setTimeout(function () {
-        media.pause();
-    }, 10000);
-}
+//     // Pause after 10 seconds
+//     setTimeout(function () {
+//         media.pause();
+//     }, 10000);
+// }
 
-playAudio('Ding.mp3');
+// playAudio('Ding.mp3');
 
     $scope.accel = {};
 
@@ -129,16 +134,6 @@ playAudio('Ding.mp3');
           Y: Y,
           Z: Z,
         };
-
-        // var oldValue = 0.0;
-        // var newValue = 0.0;
-        // var cache = 0.0;
-
-        // if (oldValue === 0.0) {
-        //   oldValue = X;
-        // } else {
-        //   newValue = X
-        // }
         if (X > 1.0) {
           $scope.test = true;
         } else {
