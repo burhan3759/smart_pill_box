@@ -1,6 +1,6 @@
 angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templates'])
 
-.controller('MainCtrl', function($scope, $ionicModal) {
+.controller('MainCtrl', function($scope, $ionicModal,$state) {
 
   $scope.days = [{id: '1' ,day:'Monday'},{id: '2' ,day:'Tuesday'},{id: '3' ,day:'Wednesday'},{id: '4' ,day:'Thursday'},{id: '5' ,day:'Friday'},{id: '6' ,day:'Saturday'},{id: '7' ,day:'Sunday'}];
 
@@ -167,4 +167,13 @@ angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templ
       day.meridian = "AM";
     }
   }
+
+  $scope.loggedIn = function() {
+    var currentUser = Parse.User.current();
+    if (currentUser) {
+      $state.go('tab.dash');
+    } else {
+      $state.go('login');
+    }
+  };
  });
