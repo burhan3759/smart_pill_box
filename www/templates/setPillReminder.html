@@ -8,6 +8,7 @@
         </div> 
       </ion-item>
     </ion-list>
+    <button ng-click="saveToParse()">Save</button>
   </ion-content>
 </ion-view> 
 
@@ -17,7 +18,36 @@
       <h1 class="title">Schedule</h1>
     </ion-header-bar>
     <ion-content class="padding">
-      <div class="list" ng-repeat="day in arr">
+      <div class="list" ng-repeat="day in arr | filter:searchText track by day.id">
+        <div class="12HourTimePickerChildDiv">
+          <div class="row">
+            <span class="button-small col col-25">
+              <button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10"
+                      ng-click="increaseHours()">
+                <i class="icon ion-chevron-up"></i></button>
+              <input type="text" placeholder="" ng-model="day.hours" class="ipBoxes timePickerBoxText" disabled>
+              <button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10"
+                      ng-click="decreaseHours(day.hours)">
+                <i class="icon ion-chevron-down"></i></button>
+              </span>
+              <label class="col col-10 timePickerColon"> : </label>
+              <span class="button-small col col-25">
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10"
+                        ng-click="increaseMinutes()"><i class="icon ion-chevron-up"></i></button>
+                <input type="text" placeholder="" ng-model="day.minutes" class="ipBoxes timePickerBoxText" disabled>
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10"
+                        ng-click="decreaseMinutes()"><i class="icon ion-chevron-down"></i></button>
+              </span>
+              <label class="col col-10 timePickerColon"> : </label>
+              <span class="button-small col col-25">
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10"
+                        ng-click="changeMeridian()"><i class="icon ion-chevron-up"></i></button>
+                <input type="text" placeholder="" ng-model="day.meridian" class="ipBoxes timePickerBoxText" disabled>
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10"
+                        ng-click="changeMeridian()"><i class="icon ion-chevron-down"></i></button>
+              </span>
+            </div>
+          </div>
         <label class="item item-input">
           <input type="number" ng-model="day.amount" placeholder="1">
           <span class="input-label">Number of Pills</span> 

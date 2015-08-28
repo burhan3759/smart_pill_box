@@ -1,21 +1,24 @@
-angular.module('starter.mainCtrl', ['ionic-timepicker'])
+angular.module('starter.mainCtrl', ['angular-datepicker','ionic-timepicker.templates'])
 
 .controller('MainCtrl', function($scope, $ionicModal) {
 
   $scope.days = [{id: '1' ,day:'Monday'},{id: '2' ,day:'Tuesday'},{id: '3' ,day:'Wednesday'},{id: '4' ,day:'Thursday'},{id: '5' ,day:'Friday'},{id: '6' ,day:'Saturday'},{id: '7' ,day:'Sunday'}];
 
-  $scope.monday = [{id: '1' ,day:'Monday',}];
-  $scope.tuesday = [{id: '2' ,day:'Tuesday'}];
-  $scope.wednesday = [{id: '3' ,day:'Wednesday'}];
-  $scope.thursday = [{id: '4' ,day:'Thursday'}];
-  $scope.friday = [{id: '5' ,day:'Friday'}];
-  $scope.saturday = [{id: '6' ,day:'Saturday'}];
-  $scope.sunday = [{id: '7' ,day:'Sunday'}];
+  $scope.monday = [{id: '1' ,day:'Monday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.tuesday = [{id: '2' ,day:'Tuesday',hours: '8', minutes: '30', meridian: 'AM'}];
+  $scope.wednesday = [{id: '3' ,day:'Wednesday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.thursday = [{id: '4' ,day:'Thursday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.friday = [{id: '5' ,day:'Friday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.saturday = [{id: '6' ,day:'Saturday',hours: '9', minutes: '0', meridian: 'AM'}];
+  $scope.sunday = [{id: '7' ,day:'Sunday',hours: '9', minutes: '0', meridian: 'AM'}];
 
   $scope.addMore = function(day) {
       var newItemNo = day.length + 1;
       day.push({
         'id': newItemNo,
+        'hours': 9,
+        'minutes': 0,
+        'meridian': 'AM'
       });   
   };
 
@@ -89,4 +92,80 @@ angular.module('starter.mainCtrl', ['ionic-timepicker'])
     }
   };
 
+
+  $scope.saveToParse = function() {
+
+  $scope.pid = JSON.parse(localStorage[':pid'] || '{}');
+  $scope.uid = JSON.parse(localStorage[':uid'] || '{}');
+  console.log($scope.pid);
+  var Pillbox = Parse.Object.extend("Pillbox");
+  var pillbox = new Pillbox;
+  // pillbox.equalTo("Pid",$scope.pid);
+  // exercises.id = $scope.ExisitingExerciseID;
+  // console.log($scope.monday[1].amount);
+    pillbox.set("Pid", $scope.pid);
+    pillbox.set("User", Parse.User.current());
+    pillbox.set("Monday", $scope.monday);
+    pillbox.set("Tuesday", $scope.tuesday);
+    pillbox.set("Wednesday", $scope.wednesday);
+    pillbox.set("Thursday", $scope.thursday);
+    pillbox.set("Friday", $scope.friday);
+    pillbox.set("Saturday", $scope.saturday);
+    pillbox.set("Sunday", $scope.sunday);
+
+    pillbox.save(null, {
+          success: function(pillbox) {
+            // Execute any logic that should take place after the object is saved.
+            alert("done");
+          },  
+          error: function(pillbox, error) {
+            // Execute any logic that should take place if the save fails.
+            // error is a Parse.Error with an error code and message.
+            console.log('Failed to create new object, with error code: ' + error.message);
+          }
+    });
+  }
+  $scope.time = {};
+  
+  $scope.increaseHours = function(hours){
+    console.log(hours);
+    hours = Number(hours);
+    hours += 1;  
+    if(hours === 13){
+      hours = 1;
+    }
+  }
+
+  $scope.decreaseHours = function(){
+    $scope.time.hours = Number($scope.time.hours)
+    $scope.time.hours -= 1;  
+    if($scope.time.hours === 0){
+      $scope.time.hours = 12;
+    }
+  }
+  $scope.time.minutes = 0;
+  $scope.increaseMinutes = function(){
+    $scope.time.minutes = Number($scope.time.minutes);
+    $scope.time.minutes += 1;
+    if($scope.time.minutes === 60){
+      $scope.time.minutes = 0;
+    } 
+  }
+
+  $scope.decreaseMinutes = function(){
+    $scope.time.minutes = Number($scope.time.minutes);
+    $scope.time.minutes -= 1;
+    if($scope.time.minutes === -1){
+      $scope.time.minutes = 59;
+    } 
+  }
+
+  $scope.time.meridian = "AM";
+  $scope.changeMeridian = function(){
+    if($scope.time.meridian === "AM"){
+      $scope.time.meridian = "PM";
+    }else{
+      $scope.time.meridian = "AM";
+    }
+  }
  });

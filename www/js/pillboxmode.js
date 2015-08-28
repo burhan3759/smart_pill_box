@@ -4,6 +4,7 @@ angular.module('starter.pillBoxMode', [])
     //Get from localStorage
     console.log("not empty");
     $scope.code = JSON.parse(localStorage[':DID'] || '{}');
+    console.log($scope.code);
   } else {
     console.log("empty");
     //Generate random number
