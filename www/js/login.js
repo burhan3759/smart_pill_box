@@ -10,7 +10,7 @@ angular.module('starter.login', [])
 	  		$state.go('tab.dash');
 	    },error: function(user, error) {
 	      // The login failed. Check error to see why.
-	      alert(error);
+	      alert(error.code + " " + error.message);
 	    }
 	  });
 	};

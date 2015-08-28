@@ -23,18 +23,6 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.push','ng
       StatusBar.styleLightContent();
     }
   });
-
-  $ionicPush.register({
-      canShowAlert: true, //Can pushes show an alert on your screen?
-      canSetBadge: true, //Can pushes update app icon badges?
-      canPlaySound: true, //Can notifications play a sound?
-      canRunActionsOnWake: true, //Can run actions outside the app,
-      onNotification: function(notification) {
-        // Handle new push notifications here
-        // console.log(notification);
-        return true;
-      }
-    });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
