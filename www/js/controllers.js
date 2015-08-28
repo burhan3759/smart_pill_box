@@ -104,6 +104,17 @@ angular.module('starter.controllers', ['ionic', 'ionic-timepicker'])
   };
 }) 
 
+.controller('MainCtrl', function($state, $scope, $ionicModal) {
+  $scope.loggedIn = function() {
+    var currentUser = Parse.User.current();
+    if (currentUser) {
+      $state.go('tab.dash');
+    } else {
+      $state.go('login');
+    }
+  };
+})
+
 .controller('PushControl', function($scope) {
 parsePlugin.initialize(appId, clientKey, function() {
 
