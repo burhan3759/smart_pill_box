@@ -8,8 +8,8 @@
 Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
 
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode', 'ngCordova', 'starter.pairing'])
-.run(function($ionicPlatform, $cordovaDeviceMotion, $state) {
+angular.module('starter', ['ionic','ionic.service.core','ionic.service.push','ngCordova', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode',  'starter.pairing'])
+.run(function($ionicPlatform, $cordovaDeviceMotion, $state, $ionicPush) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,6 +23,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
       StatusBar.styleLightContent();
     }
   });
+
+  $ionicPush.register({
+      canShowAlert: true, //Can pushes show an alert on your screen?
+      canSetBadge: true, //Can pushes update app icon badges?
+      canPlaySound: true, //Can notifications play a sound?
+      canRunActionsOnWake: true, //Can run actions outside the app,
+      onNotification: function(notification) {
+        // Handle new push notifications here
+        // console.log(notification);
+        return true;
+      }
+    });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
