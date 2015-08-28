@@ -65,10 +65,47 @@ angular.module('starter.pillBoxMode', [])
   };
 })
 
-.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion) {
+.controller('PillboxCtrl', function($ionicPlatform, $scope, $cordovaDeviceMotion, $cordovaMedia) {
   $scope.code = JSON.parse(localStorage[':DID']);
 
+  
+
   $ionicPlatform.ready(function() {
+  //   var src = "Ding.mp3";
+  // var media = $cordovaMedia.newMedia(src);
+
+
+  // // var iOSPlayOptions = {
+  // //   numberOfLoops: 2,
+  // //   playAudioWhenScreenIsLocked : false
+  // // };
+
+  // // media.play(options); // iOS only!
+  // $scope.play = function () {
+  //   console.log("playsound");
+  //   media.play(); // Android
+  // };
+
+  function playAudio(url) {
+    // Play the audio file at url
+    var my_media = new Media(url,
+        // success callback
+        function () { console.log("playAudio():Audio Success"); },
+        // error callback
+        function (err) { console.log("Error: "+err); }
+    );
+
+    // Play audio
+    my_media.play();
+
+    // Pause after 10 seconds
+    setTimeout(function () {
+        media.pause();
+    }, 10000);
+}
+
+playAudio('Ding.mp3');
+
     $scope.accel = {};
 
     var options = {
