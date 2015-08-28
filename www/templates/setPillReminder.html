@@ -1,89 +1,64 @@
 <ion-view view-title="PillBox A">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" >
-        <h2>Pill ID</h2>  
-        <p></p>
-        <p></p> 
-
-
-
-<b><font size="5">Prescription Days</font></b>
- <ul class="list">
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Monday 
-</button>
-
-
-<div>
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Tuesday 
-</button>
-</div>  
-
-<div>
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Wednesday 
-</button>
-</div> 
-
-<div>
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Thursday 
-</button>
-</div>
-
-<div>
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Friday
-</button> 
-</div>
-
-<div>
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Saturday 
-</button> 
-</div>
-
-<div>
-<button class="button button-clear button-positive" ng-controller='MainCtrl' ng-click="openModal()">
-  Sunday 
-</button>
-</div> 
-
-</ul>
-
-
+  <ion-content padding="4">
+    <h1 class="title">Prescription Days</h1>
+    <ion-list padding="4">      
+      <ion-item ng-click="openModal(day)" ng-repeat="day in days  | filter:searchText track by day.id" >
+        <div>
+          {{day.day}}
+        </div> 
       </ion-item>
     </ion-list>
+    <button ng-click="saveToParse()">Save</button>
   </ion-content>
 </ion-view> 
 
 <script id="reminderEdit.html" type="text/ng-template">
-
-    <ion-modal-view style="height: 10%;">
+  <ion-modal-view style="height: 10%;">
     <ion-header-bar>
-      <h1 class="title">Set Reminder</h1>
+      <h1 class="title">Schedule</h1>
     </ion-header-bar>
-    <ion-content padding="4">
-      <label class="item item-input item-select" >
-    <div class="input-label" >
-      Number of pills
-    </div>
-    <select ng-model="data.pills">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-    </select>  
-  </label>  
-  <ionic-timepicker input-obj="timePickerObject">
-  <button class="button button-block button-light overflowShow"> What time does he/she take his/her pill(s)?
-    <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
-  </button>
-</ionic-timepicker>
-  <button class="button button-full button-balanced" ng-click="closeModal(); noOfPills()">Done</button>
+    <ion-content class="padding">
+      <div class="list" ng-repeat="day in arr | filter:searchText track by day.id">
+        <div class="12HourTimePickerChildDiv">
+          <div class="row">
+            <span class="button-small col col-25">
+              <button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10"
+                      ng-click="increaseHours(day)">
+                <i class="icon ion-chevron-up"></i></button>
+              <input type="text" placeholder="" ng-model="day.hours" class="ipBoxes timePickerBoxText" disabled>
+              <button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10"
+                      ng-click="decreaseHours(day)">
+                <i class="icon ion-chevron-down"></i></button>
+              </span>
+              <label class="col col-10 timePickerColon"> : </label>
+              <span class="button-small col col-25">
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10"
+                        ng-click="increaseMinutes(day)"><i class="icon ion-chevron-up"></i></button>
+                <input type="text" placeholder="" ng-model="day.minutes" class="ipBoxes timePickerBoxText" disabled>
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10"
+                        ng-click="decreaseMinutes(day)"><i class="icon ion-chevron-down"></i></button>
+              </span>
+              <label class="col col-10 timePickerColon"> : </label>
+              <span class="button-small col col-25">
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10"
+                        ng-click="changeMeridian(day)"><i class="icon ion-chevron-up"></i></button>
+                <input type="text" placeholder="" ng-model="day.meridian" class="ipBoxes timePickerBoxText" disabled>
+                <button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10"
+                        ng-click="changeMeridian(day)"><i class="icon ion-chevron-down"></i></button>
+              </span>
+            </div>
+          </div>
+        <label class="item item-input">
+          <input type="number" ng-model="day.amount" placeholder="1">
+          <span class="input-label">Number of Pills</span> 
+        </label>
+        <button class="button button-icon icon ion-minus-circled" ng-click="remove(arr, day)"></button>
+      </div>  
+      <button class="button button-icon icon ion-plus-circled" ng-click="addMore(arr)"></button>
+      <button class="button button-full button-balanced" ng-click="closeModal(); noOfPills()">Done</button>
     </ion-content>
   </ion-modal-view>
 </script>
+
 
 

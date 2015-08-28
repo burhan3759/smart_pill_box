@@ -8,7 +8,7 @@
 Parse.initialize("mbhEIUCTuXWiXuqavy6Hx5G1kiP0IxH9ggONMIdU", "gnFLSBV0Ksyj9ZlCOULMNNmGdI9s2W3OHdyNlsPh");  
 
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode', 'ngCordova', 'starter.pairing'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.login', 'starter.pillBoxMode', 'ngCordova', 'starter.pairing','starter.mainCtrl'])
 .run(function($ionicPlatform, $cordovaDeviceMotion, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

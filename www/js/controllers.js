@@ -80,6 +80,7 @@ parsePlugin.initialize(appId, clientKey, function() {
 
 
 
+
 .controller('MainCtrl', function($state, $scope, $ionicModal) {
   $scope.loggedIn = function() {
     var currentUser = Parse.User.current();
@@ -139,4 +140,5 @@ parsePlugin.initialize(appId, clientKey, function() {
   };
 
  });
+
 
