@@ -34,31 +34,35 @@ angular.module('starter.pairing', [])
 		}
 	  });
 	};
+	
+  $scope.reminder = function(){
 
- //  $scope.saveToParse = function(Pillbox) {
 
-	// var Exercises = Parse.Object.extend("Exercises");
-	// var exercises = new Exercises();
-	// exercises.id = $scope.ExisitingExerciseID;
-	// console.log($scope.ExisitingExerciseID);
+      var date = new Date();  
+      console.log("date: : : "+date);
+      date = (date.toString()).substring(0,3);
+      date += "day";
+      date = date.toString();
+      console.log(date);
 
-	// 	exercises.fetch()
-	// 	.then(function(){
-	// 	      exercises.set({ObjectId: Pillbox.objID,
-	// 	          Pid: Pillbox.pID,
-	// 	          Monday: Pillbox.monday,
-	// 	          Tueday: Pillbox.tuesday,
-	// 	          Wednesday: Pillbox.wednesday,
-	// 	          Thursday: Pillbox.thursday,
-	// 	          Friday: Pillbox.friday,
-	// 	          Saturday: Pillbox.saturday,
-	// 	          Sunday: Pillbox.sunday,
-	// 	          images: $scope.images})
+      // $scope.pid = JSON.parse(localStorage['pid']);
+      var Time = Parse.Object.extend("Pillbox");
+      var query = new Parse.Query(Time);
+      // query.descending("createdAt");
+      // query.equalTo("Pid", $scope.pid);
+      // query.descending("createdAt");
+      query.first({
+        success: function(object) {
+          // Successfully retrieved the object.
+          console.log("Retrieved object from parse " + object);
+          //Only retrieve from the foodAudit column
+          $scope.day = object.get('Friday');
+          console.log($scope.day[0].id);
+        },
+        error: function(error) {
+          console.log("Error: " + error.code + " " + error.message);
+        }
+      });
+  }
 
-	// 	      return exercises.save();
-	// 	       $state.go('app.exercises', {clear: true});
-
-	// 	})
-	// }
-
-})
+});

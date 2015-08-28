@@ -111,4 +111,26 @@ angular.module('starter.pillBoxMode', [])
 
       });
   });
+
+  $scope.reminder = function(){
+      var date = new Date();
+      console.log(date);
+      // $scope.pid = JSON.parse(localStorage['pid']);
+      // var Time = Parse.Object.extend("Pillbox");
+      // var query = new Parse.Query(Time);
+      // query.descending("createdAt");
+      // query.equalTo("Pid", $scope.pid);
+      // query.descending("createdAt");
+      // query.first({
+      //   success: function(object) {
+      //     // Successfully retrieved the object.
+      //     console.log("Retrieved object from parse " + object);
+      //     //Only retrieve from the foodAudit column
+      //     $scope.hours = object.get('foodAudit');
+      //   },
+      //   error: function(error) {
+      //     console.log("Error: " + error.code + " " + error.message);
+      //   }
+      // });
+  }
 });
